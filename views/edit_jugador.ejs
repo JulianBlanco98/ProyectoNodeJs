@@ -1,0 +1,58 @@
+<%- include('layout/header') %>
+<style>body{background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);}</style>
+    <div class="container contenido">
+        <div class="row">
+            <div class="col-lg-6 mx-auto mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-info mb-2">
+                        <h1 class="text-light text-center">Editar Jugador (<%= jugador.nombre %>)</h1>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/update/<%= jugador.id %>" method="post" id="add-form" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="nombre" class="mb-1">Nombre del Jugador</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control form-control-lg"
+                                    placeholder="Insertar el nombre" value="<%= jugador.nombre %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="equipo" class="mb-1">Equipo</label>
+                                <select id="equipo" name="equipo" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                                    <% equipos.forEach(function(equipo)  { //Comparar y buscar el mismo nombre%>
+                                      <option value="<%= equipo.nombre %>" <%= jugador.equipo && jugador.equipo.toString() === equipo.nombre ? 'selected' : '' %>><%= equipo.nombre %></option>
+                                    <% }); %>
+                                  </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="posicion" class="mb-1">Posición</label>
+                                <select id="posicion" name="posicion" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                                    <option value="Base" <%= jugador.posicion === 'Base' ? 'selected' : '' %>>Base</option>
+                                    <option value="Escolta" <%= jugador.posicion === 'Escolta' ? 'selected' : '' %>>Escolta</option>
+                                    <option value="Alero" <%= jugador.posicion === 'Alero' ? 'selected' : '' %>>Alero</option>
+                                    <option value="AlaPivot" <%= jugador.posicion === 'AlaPivot' ? 'selected' : '' %>>AlaPivot</option>
+                                    <option value="Pivot" <%= jugador.posicion === 'Pivot' ? 'selected' : '' %>>Pivot</option>
+                                </select>
+                            </div>                            
+                            <div class="mb-3">
+                                <label for="dorsal" class="mb-1">Dorsal</label>
+                                <input type="text" name="dorsal" id="dorsal" class="form-control form-control-lg"
+                                    placeholder="Dorsal del jugador" value="<%= jugador.dorsal %>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagen" class="form-label mb-1">Seleccionar Imagen</label>
+                                <input type="file" name="imagen" id="imagen" class="form-control form-control-lg" required>
+                                <img src="/jugadores/<%= jugador.imagen %>" width="100" class="img-thumbnail mt-1">
+                            </div>
+                            <input type="hidden" name="old_imagen" value="<%= jugador.imagen %>">
+                            <style> .flex-fill {width: 50%;} </style>
+                            <div class="d-flex">
+                                <input type="submit" value="Actualizar" name="submit"
+                                    class="btn btn-success btn-lg flex-fill me-2">
+                                <input type="reset"  name="reset" class="btn btn-danger btn-lg flex-fill">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('layout/footer') %>

@@ -1,0 +1,34 @@
+<%- include ('layout/header') %>
+<style>
+  body {
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  }
+</style>
+<div class="container contenido">
+  <div class="row">
+    <div class="col-lg-6 mx-auto mt-4">
+      <div class="card shadow">
+        <div class="card-header bg-info mb-2">
+          <h1 class="text-light text-center">Perfil</h1>
+        </div>
+        <div class="card-body text-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100"
+            height="100"
+            fill="currentColor"
+            class="bi bi-person-fill mb-3"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+            />
+          </svg>
+          <h3 class="mb-3"><%= nombreUsuario %></h3>
+          <a href="/inicio" class="btn btn-primary">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include ('layout/footer') %>

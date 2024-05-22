@@ -1,0 +1,50 @@
+<%- include('layout/header') %>
+    <style>body{background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);}</style>
+    <div class="container contenido">
+        <div class="col-lg-12 my-4">
+            <% if (message) { %>
+             <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong><%= message.message %></strong>
+            </div>
+            <% } %>
+            <div class="table-responsive">
+                <% if (jugadores != '') { //La tabla se crea si no está vacía la colección %>
+                    <table class="table table-striped text-center align-middle shadow" id="tabla_Jugadores">
+                        <thead>
+                            <tr class="table-dark">
+                                <th>ID</th>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Equipo</th>
+                                <th>Dorsal</th>
+                                <th>Posicion</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% jugadores.forEach((row, index) => { %>
+                                <tr>
+                                    <td><%= index %></td>
+                                    <td><img src="/jugadores/<%= row.imagen %>" width="130" class="img-thumbnail"></td>
+                                    <td><%= row.nombre %></td>
+                                    <td><%= row.equipo %></td>
+                                    <td><b><%= row.dorsal %></b></td>
+                                    <td><%= row.posicion %></td>
+                                    <td>
+                                        <a href="/edit/<%= row.id %>" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a>
+                                        <a href="/delete/<%= row.id %>" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } 
+                else { %>
+                    <h1 class="text-center text-secondary mt-5">No hay jugadores en la colección</h1>
+                <% } %>
+            </div>
+            
+        </div>
+    </div>
+    <%- include('layout/footer') %>
